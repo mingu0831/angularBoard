@@ -1,0 +1,40 @@
+<div>
+    <div ng-app="myApp" ng-controller="myCtrl" class="w(100vw) bg(#222) h(100vh) p(0.2%)">
+        <div>
+            <p class="c(#7450ff) heavy font(36/3) text(center)">Angular Board</p>
+        </div>
+
+        <div class="text(center)" [hidden]="writeForm">
+            <button type="button" class="b(#7450ff) c(white) w(5vw) r(20) bw(3) m(0.5%) text(center)" (click)="showForm()">Write</button>
+        </div>
+
+        <div [hidden]="!writeForm" >
+            <form ng-submit="addBoard()" class="w(100%)">
+                <div class="w(100%) bg(linear-gradient(92deg,#7450ff/0%,#8332c7/100%)) r(20) p(1) text(center)">
+                    <input [(ngModel)]="boardTitle" name="boardTitle" placeholder="Title" class="w(46%) m(0.5%)">
+                    <input [(ngModel)]="boardWriter" name="boardWriter" placeholder="Name" class="w(46%) m(0.5%)">
+                    <textarea [(ngModel)]="boardContent" name="boardContent" placeholder="Type Your Ideas Here." class="w(93%) mt(0.5%) mb(none) m(1%) resize(none)"></textarea><br>
+                    <button type="submit" (click)="addList()" class="b(white) c(white) w(5vw) r(20) bw(3) m(0.5%) text(center)">Write</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="hbox w(100%) p(1) text(center)">
+            <div id="outForm" *ngFor="let item of boardList; let i=index" class="b(#7450ff) c(white) bw(3) text(center) m(1%) w(48%) r(20)">
+                <table class="w(100%)">
+                    <tr class="r(20)">
+                        <td class="w(15%) b(none) rl(20)" rowspan="2">{{item.id}}</td>
+                        <td class="w(70%) bt(none) b(#7450ff) bw(3) text(left)">제목:{{item.title}}, 작성자:{{item.writer}}</td>
+                        <td class="w(15%) b(none) rr(20) " rowspan="2">
+                            <button type="button" class="b(#7450ff) c(white) w(5vw) r(20) bw(3) m(0.5%) text(center)" (click)="updateList(i)">수정</button>
+                            <button type="button" class="b(#7450ff) c(white) w(5vw) r(20) bw(3) m(0.5%) text(center)" (click)="removeList(i)">삭제</button>
+                        </td>
+                    </tr>
+                    <tr class="r(20)">
+                        <td class="w(70%) bb(none) b(#7450ff) bw(3) text(left)">{{item.content}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
