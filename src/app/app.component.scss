@@ -1,0 +1,61 @@
+.board_list {
+    width: 100%;
+    border-top: 2px solid #FFFFFF;
+  
+    > div:not(.updating-form) {
+      border-bottom: 1px solid #ddd;
+      font-size: 0;
+  
+      &.top {
+        border-bottom: 1px solid #999;
+      }
+  
+      &:last-child {
+        border-bottom: 1px solid #999;
+      }
+
+      > div:not(.updating-form) {
+        display: inline-block;
+      }
+  
+      > div {
+        padding: 15px 0;
+        text-align: center;
+        font-size: 15px;
+      }
+  
+      &.top > div {
+        font-weight: 600;
+      }
+    }
+  
+    .num {
+      width: 5%;
+    }
+
+    .title {
+      width: 30%;
+      text-align: left;
+    }
+  
+    .content {
+      width: 30%;
+      text-align: left;
+    }
+  
+    .top .content {
+      text-align: center;
+    }
+
+    .top .title {
+      text-align: center;
+    }
+  
+    .writer {
+      width: 10%;
+    }
+
+    .action {
+      width: 10%;
+    }
+  }
