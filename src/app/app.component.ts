@@ -14,6 +14,7 @@ export class AppComponent {
   boardContent : string;
   writeForm : boolean;
   updatingForm : boolean;
+  updatingFormArr : any[];
 
   writingForm = this.fb.group({
     boardTitle : ['', Validators.required],
@@ -30,6 +31,7 @@ export class AppComponent {
     this.boardContent = '';
     this.writeForm = false;
     this.updatingForm = false;
+    this.updatingFormArr = [{id:1, condition:false}, {id:2, condition:false}];
   }
 
   showWriteForm() {
@@ -40,12 +42,16 @@ export class AppComponent {
     }
   }
 
-  showUpdateForm() {
-    if(this.updatingForm == false) {
-      this.updatingForm = true
+  showUpdateForm(i:number) {
+    if(this.updatingFormArr[i].condition == false) {
+      this.updatingFormArr[i].condition = true
     } else {
-      this.updatingForm = false;
+      this.updatingFormArr[i].condition = false;
     }
+  }
+
+  getCondition(i:number) {
+    return this.updatingFormArr[i].condition;
   }
 
   addList() {
@@ -64,7 +70,7 @@ export class AppComponent {
     }
 
     this.boardList.push({id:newId, title:this.boardTitle, writer:this.boardWriter, content:this.boardContent});
-    console.log(this.boardList);
+    this.updatingFormArr.push({id:newId, condition:false});
 
     this.boardTitle = '';
     this.boardWriter = '';
@@ -80,7 +86,7 @@ export class AppComponent {
     this.boardTitle = '';
     this.boardWriter = '';
     this.boardContent = '';
-    this.showUpdateForm();
+    this.showUpdateForm(i);
   }
 
   removeList(i:number) {    

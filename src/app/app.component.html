@@ -32,14 +32,14 @@
                     <div class="action">수정</div>
                     <div class="action">삭제</div>
                 </div>
-                <div id="outForm" *ngFor="let item of boardList; let i=index">
+                <div id={{i}} *ngFor="let item of boardList; let i=index">
                     <div class="num">{{i+1}}</div>
                     <div class="title">{{item.title}}</div>
                     <div class="content">{{item.content}}</div>
                     <div class="writer">{{item.writer}}</div>
-                    <div class="action"><button type="button" class="button" (click)="showUpdateForm()">수정</button></div>
+                    <div class="action"><button type="button" class="button" (click)="showUpdateForm(i)">수정</button></div>
                     <div class="action"><button type="button" class="button" (click)="removeList(i)">삭제</button></div>
-                    <div class="updating-form c(black)" [hidden]="!updatingForm">
+                    <div id="updateForm" class="updating-form c(black) w(100%)" [hidden]="!getCondition(i)">
                         <form [formGroup]="writingForm" ng-submit="addBoard()" class="w(100%)">
                             <div class="updating-form w(100%) bg(linear-gradient(92deg,#7450ff/0%,#8332c7/100%)) r(5) p(1) text(center)">
                                 <div class="updating-form mt(3%)">
